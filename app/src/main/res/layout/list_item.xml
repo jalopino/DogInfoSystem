@@ -54,7 +54,7 @@
             android:layout_weight="1"
             android:gravity="right|top"
             android:text="18-10-2018"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <View

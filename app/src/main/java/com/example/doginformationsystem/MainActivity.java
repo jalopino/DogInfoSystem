@@ -14,11 +14,11 @@ import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+import androidx.appcompat.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.SearchView;
 
 import java.util.List;
 
@@ -30,10 +30,10 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    private Adapter adapter;
+    private com.example.doginformationsystem.Adapter adapter;
     private List<Pets> petsList;
     ApiInterface apiInterface;
-    Adapter.RecyclerViewClickListener listener;
+    com.example.doginformationsystem.Adapter.RecyclerViewClickListener listener;
     private ProgressBar progressBar;
 
     @Override
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        listener = new Adapter.RecyclerViewClickListener() {
+        listener = new com.example.doginformationsystem.Adapter.RecyclerViewClickListener() {
             @Override
             public void onRowClick(View view, final int position) {
 
@@ -103,11 +103,9 @@ public class MainActivity extends AppCompatActivity {
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
-
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         final SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         MenuItem searchMenuItem = menu.findItem(R.id.action_search);
-
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName())
         );
@@ -153,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 petsList = response.body();
                 Log.i(MainActivity.class.getSimpleName(), response.body().toString());
-                adapter = new Adapter(petsList, MainActivity.this, listener);
+                adapter = new com.example.doginformationsystem.Adapter(petsList, MainActivity.this, listener);
                 recyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
             }
